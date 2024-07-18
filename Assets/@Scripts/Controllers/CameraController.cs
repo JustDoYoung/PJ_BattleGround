@@ -10,23 +10,17 @@ public class CameraController : MonoBehaviour
 
     CinemachineFreeLook cm;
 
-    private void Awake()
-    {
-        Init();
-    }
+    private Camera _camera;
+    public Camera MainCamera { get { return _camera; } }
 
-    private void Init()
+    public void SetPlayer(GameObject player)
     {
+        _camera = Camera.main;
         cm = transform.GetComponentInChildren<CinemachineFreeLook>();
 
-        follow = Managers.GameMananger.Player.transform;
+        follow = player.transform;
         lookAt = follow.Find("HeadTarget");
 
-        UpdateCameraSettings();
-    }
-
-    void UpdateCameraSettings()
-    {
         cm.Follow = follow;
         cm.LookAt = lookAt;
     }

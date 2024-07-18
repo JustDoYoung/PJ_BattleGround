@@ -4,16 +4,8 @@ using UnityEngine;
 
 public class GameManager
 {
-    GameObject _player;
-    public GameObject Player { get { InitPlayer(); return _player; } }
-
-    void InitPlayer()
-    {
-        if (_player == null)
-        {
-            _player = Spawn("Player");
-        }
-    }
+    public GameObject Player { get { return Managers.SceneManager.CurrentScene.Player; } }
+    public Camera MainCamera { get { return Managers.SceneManager.CurrentScene.CameraController.MainCamera; } }
 
     public  GameObject Spawn(string path, Transform parent = null)
     {

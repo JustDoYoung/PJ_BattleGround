@@ -10,7 +10,9 @@ public class GameScene : BaseScene
 
         if(Player == null)
         {
-            Player = Managers.GameMananger.Player;
+            Player = Managers.GameManager.Spawn("Player");
         }
+
+        CameraController.SetPlayer(Player);
     }
 }

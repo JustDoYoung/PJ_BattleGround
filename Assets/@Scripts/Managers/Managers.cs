@@ -17,10 +17,12 @@ public class Managers : MonoBehaviour
     private InputManager _input = new InputManager();
     private ResourceManager _resource = new ResourceManager();
     private GameManager _game = new GameManager();
+    private SceneManagerEx _scene = new SceneManagerEx();
 
     public static InputManager Input { get { return Instance._input; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
-    public static GameManager GameMananger { get { return Instance._game; } }
+    public static GameManager GameManager { get { return Instance._game; } }
+    public static SceneManagerEx SceneManager { get { return Instance._scene; } }
 
 
     private static void Init()

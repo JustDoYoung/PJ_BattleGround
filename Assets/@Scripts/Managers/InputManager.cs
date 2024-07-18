@@ -1,49 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager
 {
-    Transform _player;
-
-    public Transform Player { get { InitPlayer(); return _player; } }
-
-    void InitPlayer()
-    {
-        if(_player == null)
-        {
-            _player = Managers.GameMananger.Player.transform;
-        }
-    }
+    public Action<Vector3> MovementAction = null;
 
     public void OnUpdate()
     {
-        Move();
-        Rotate();
+        Movement();
     }
 
-    void Move()
+    void Movement()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Debug.Log("Forward");
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Debug.Log("Back");
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Debug.Log("Right");
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Debug.Log("Left");
-        }
+        if (MovementAction == null) return;
+
+        float dirX = Input.GetAxis("Horizontal");
+        float dirZ = Input.GetAxis("Vertical");
+        
+        Vector3 dir = new Vector3(dirX, 0, dirZ);
+
+        MovementAction.Invoke(dir);
     }
 
-    void Rotate()
+    public void Clear()
     {
-
+        MovementAction = null;
     }
 }
